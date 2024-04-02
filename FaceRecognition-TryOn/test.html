@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Square Buttons</title>
+<style>
+    .button {
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        display: inline-block;
+        margin-right: 10px;
+        border: 2px solid transparent; /* Initially transparent border */
+        cursor: pointer;
+    }
+
+    .button.active {
+        border-color: green; /* Green border when active */
+    }
+
+    #hat1 {
+        background-image: url('./assets/hat1/thumbnail.png');
+    }
+
+    #hat2 {
+        background-image: url('./assets/hat2/thumbnail.png');
+    }
+
+    #glasses1 {
+        background-image: url('./assets/glasses1/thumbnail.png');
+    }
+
+    #glasses2 {
+        background-image: url('./assets/glasses2/thumbnail.png');
+    }
+
+    #earing {
+        background-image: url('./assets/earring/thumbnail.png');
+    }
+
+    .button-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+    <div class="button-container">
+        <div id="hat1" class="button"></div>
+        <div id="hat2" class="button"></div>
+        <div id="glasses1" class="button"></div>
+        <div id="glasses2" class="button"></div>
+        <div id="earing" class="button"></div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.button').forEach(button => {
+            button.addEventListener('click', () => {
+                button.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
