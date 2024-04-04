@@ -1,6 +1,6 @@
 const THREE = window.MINDAR.FACE.THREE;
 import {loadGLTF} from "../libs/loader.js";
-
+//////////capture
 const capture = (mindarThree) => {
   const {video, renderer, scene, camera} = mindarThree;
   const renderCanvas = renderer.domElement;
@@ -24,7 +24,7 @@ const capture = (mindarThree) => {
   const data = canvas.toDataURL("image/png");
   return data;
 }
-
+//////////toggle
 function toggleModel(id, anchor, model) {
   if(id.classList.contains("active"))
   {
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const glasses2Model = await loadGLTF("./assets/glasses2/scene.gltf");
     const earringRModel = await loadGLTF("./assets/earring/scene.gltf");
     const earringLModel = await loadGLTF("./assets/earring/scene.gltf");
-    
+
     hat1Model.scene.scale.set(0.35,0.35,0.35);
     hat1Model.scene.position.set(0,1,0);
     hat2Model.scene.scale.set(0.008,0.008,0.008);

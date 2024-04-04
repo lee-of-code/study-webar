@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <script data-consolejs-channel="90c7c528-6093-58ed-ac73-f5add27767cc" src="https://remotejs.com/agent/agent.js"></script> -->
+  <script type="module" src="./main.js"></script>  
+  <style>
+    html, body {
+                position: relative;
+                margin: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+        }
+    .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }  
+    .button {
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        display: inline-block;
+        margin-right: 10px;
+        border: 2px solid transparent; /* Initially transparent border */
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
+    }
+
+    .button.active {
+        border-color: green; /* Green border when active */
+    } 
+    #chair {
+        background-image: url("assets/chair/thumbnail.png");
+    }
+    #table {
+        background-image: url("assets/coffee-table/thumbnail.png");
+    }
+    #cushion {
+        background-image: url("assets/cushion/thumbnail.png");
+    }
+
+  </style>
+</head>
+<body>
+  <div class="button-container">
+    <div id = "chair" class="button"></div>
+    <div id = "table" class="button"></div>
+    <div id = "cushion" class="button"></div>
+  </div>
+
+</body>
+</html>
