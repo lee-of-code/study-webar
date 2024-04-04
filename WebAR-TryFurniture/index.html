@@ -40,6 +40,29 @@
         background-image: url("assets/cushion/thumbnail.png");
     }
 
+    .confirm-button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+    }
+
+    #place {
+      background-color: #008CBA; /* Blue */
+    }
+
+    #cancel {
+      background-color: #f44336; /* Red */
+    }
+
   </style>
 </head>
 <body>
@@ -48,6 +71,8 @@
     <div id = "table" class="button"></div>
     <div id = "cushion" class="button"></div>
   </div>
+  <button class="confirm-button" id="place">Confirm</button>
+  <button class="confirm-button" id="cancel">Cancel</button>
 
 </body>
 </html>

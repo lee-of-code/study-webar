@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     scene.add(light);
     /////marker
     const recticleGeometry = new THREE.RingGeometry(0.15, 0.2, 32).rotateX(-Math.PI/2);
-    const recticleMat = new THREE.MeshBasicMaterial();
+    const recticleMat = new THREE.MeshBasicMaterial({color:0xff0000});
     const recticle = new THREE.Mesh(recticleGeometry,recticleMat);
     recticle.matrixAutoUpdate = false;
     recticle.visible = false
@@ -38,8 +38,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const chairModel = await loadGLTF("./assets/chair/scene.gltf")
     const tableModel = await loadGLTF("./assets/coffee-table/scene.gltf")
     const cushionModel = await loadGLTF("./assets/cushion/scene.gltf")
-    chairModel.scene.scale.set(0.6,0.6,0.6);
-    tableModel.scene.scale.set(0.06,0.06,0.06);
+    chairModel.scene.scale.set(0.25,0.25,0.25);
+  
+    const bbox = new THREE.Box3().setFromObject(tableModel.scene);
+    const size = bbox.getSize(new THREE.Vector3());
+    tableModel.scene.scale.multiplyScalar(0.7 / size.y);
+    const bbox2 = new THREE.Box3().setFromObject(tableModel.scene);
+    const center = bbox2.getCenter(new THREE.Vector3());
+    tableModel.scene.position.set(-center.x, -center.y, -center.z);
+
+    cushionModel.scene.scale.set(0.5,0.5,0.5);
+
+
     
     /////html interaction
     document.querySelectorAll('.button').forEach(button => {
@@ -63,13 +73,21 @@ document.addEventListener('DOMContentLoaded', () => {
       handleSelection(cushionModel,currentModel ,cushionId, scene);
       currentModel = cushionModel;
     })
-    /////controller
-    const controller = renderer.xr.getController(0);
-    scene.add(controller);    
-    controller.addEventListener("select", ()=>{
+    const placeId = document.querySelector("#place");
+    const cancelId = document.querySelector("#cancel");
+    placeId.addEventListener('click', (e) => {
       if(currentModel === null) return;
       scene.add(currentModel.scene.clone());
     });
+    cancelId.addEventListener('click', (e) => {
+      if(currentModel ===null) return;
+      scene.remove(currentModel.scene);
+      currentModel = null;      
+    });
+    /////controller
+    const controller = renderer.xr.getController(0);
+    scene.add(controller);    
+
     /////renderer, update every frame
     renderer.xr.addEventListener("sessionstart", async(e) => {
       const session = renderer.xr.getSession();
